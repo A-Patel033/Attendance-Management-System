@@ -1,0 +1,212 @@
+doctype html
+html(lang="en")
+  head
+    title Attendance Tracking System
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/a076d05399.js")
+    link(href="/Static/Staff_Profile.css" rel="stylesheet")
+    style.
+      .container{
+      height: 100%;
+      border: 1px solid black;
+      }
+      td{
+      text-align: center;
+      font-size: 20px;
+      }
+      th{
+      font-size: 20px;
+      }
+      .btn:hover{
+      background-color: white;
+      }
+      /* Full-width input fields */
+      input[type=text], input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+      }
+      /* Add a background color when the inputs get focus */
+      input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+      }
+      /* Set a style for all buttons */
+      .clearfix.button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+      }
+      button:hover {
+      opacity:1;
+      background-color: black;
+      }
+      /* Extra styles for the cancel button */
+      .cancelbtn {
+      padding: 14px 20px;
+      background-color: #f44336;
+      }
+      /* Float cancel and signup buttons and add an equal width */
+      .cancelbtn, .signupbtn {
+      float: left;
+      width: 50%;
+      }
+      /* Add padding to container elements */
+      .container {
+      padding: 16px;
+      }
+      /* The Modal (background) */
+      .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: #474e5d;
+      padding-top: 50px;
+      }
+      /* Modal Content/Box */
+      .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+      }
+      /* Style the horizontal ruler */
+      hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+      }
+      /* The Close Button (x) */
+      .close {
+      position: absolute;
+      right: 35px;
+      top: 15px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #f1f1f1;
+      }
+      .close:hover,
+      .close:focus {
+      color: #f44336;
+      cursor: pointer;
+      }
+      /* Clear floats */
+      .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+      }
+      /* Change styles for cancel button and signup button on extra small screens */
+      @media screen and (max-width: 300px) {
+      .cancelbtn, .signupbtn {
+      width: 100%;
+      }
+      }
+      #time{
+      color: white;
+      font-size: 18px;
+      }
+  body
+    //- // NAvigation Bar
+    nav.navbar.navbar-expand-md.sticky-top(style="margin-bottom: 1em;")
+      .container-fluid(style="padding-left: 4em; background-color: #d5d5d5; height: 8em;")
+        a.navbar-brand(href="#" style="padding-left: 2em;")
+          img(src="/Static/23091b7e-c2a2-4baf-8b23-182d2168fb6a_200x200.png")
+        button.navbar-toggler(type="button" data-toggler="collapse" data-target="#navbarResponsive")
+          span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            b
+              li.nav-item
+                a.nav-link(href="/Staff/Staff_Home") Home
+            b
+              li.nav-item
+                a.nav-link(href="#") About
+            b
+              li.nav-item
+                a.nav-link(href="/Student/profile")
+                  button#profileBtn.btn.p-0(type="button")=studentID
+            b
+              li.nav-item
+                a.nav-link(href="/Logout") Log Out
+    .container(style="overflow: scroll;")
+      .row.mt-5(style="padding-left: 30em;")
+        img.img-responsive(style=" height:160px; width:160px; border-radius: 5em;" src="/Static/img_avatar3.png")
+      .row.mt-3.ml-3.mr-3#profileData(style="border: 3px solid black; ")
+        .firstnameAndLastname.mr-3.ml-3
+          .fname
+            h5=`Student ID: ${data.ID}`
+          .lname
+            h5= `Full Name :   ${data.name}`
+        .emailAndNumber.mr-3.ml-3
+          .email 
+            h5=`Email :  ${data.email}`
+          .number  
+            h5=`Contact No  :  ${data.number}`
+        .addressAndSuburb.mr-3.ml-3
+          .address 
+            h5=`Date of Birth  :  ${data.DOB}`
+        .addressAndSuburb.mr-3.ml-3
+          .address 
+            h5=`Address  :  ${data.Address}`
+          .Suburb
+            h5=`Suburb  : ${data.Suburb}`
+        .stateAndPostcode.mr-3.ml-3
+          .state 
+            h5=`State  :  ${data.State}`
+          .postcode 
+            h5=`Postcode  : ${data.Postcode}`
+      .row.mt-3.ml-3.mr-3(style="display:flex; justify-content: center;")
+        a.mr-4(href="/Student/editProfile")
+          button.btn.btn-sm#profilrEditBtn(type="button")
+            i.fas.fa-edit.pr-2
+            | Edit Profile 
+        a(href="/Student/changePassword")
+          button.btn.btn-sm#profilrEditBtn(type="button")
+            i.fas.fa-unlock-alt.pr-2
+            | Change Password
+    // Footer Section
+    .row.pb-2
+      footer(style="clear: both;")
+        .container-fluid.padding(style="margin-top: 1em;")
+          .container-fluid(style="background-color:lightgray;")
+            .row.text-center
+              .col-12
+                h4(style="color:black; margin-top: 1em;") Connect to us on
+              .col-12.social
+                a(href="https://www.facebook.com/search/top?q=federation%20university%20australia")
+                  i.fab.fa-facebook
+                a(href="#")
+                  i.fab.fa-twitter
+                a(href="#")
+                  i.fab.fa-google-plus-g
+                a(href="#")
+                  i.fab.fa-instagram
+                a(href="#")
+                  i.fab.fa-youtube
+          .row.text-center(style="border: 1px solid blue; margin-top: 0.5em; background-color: #3f3f3f;")
+            .copyrightSection1
+                  p.p(style="margin-bottom: 1em;")
+                    | © Copyright 2020
+                    br
+                    a(href="first page.html") Attendance Tracking System
+                    | . All Right Reserved Created by Attendance Tracker Group
+            .col-12
+              h5 © www.attendancetracking.com
+              span#time

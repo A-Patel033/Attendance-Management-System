@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+}
+.navbar{
+    padding: 0rem;
+    margin-left: 0em;
+    margin-right: 0em;
+}
+.navbar-nav li{
+    padding-right: 20px;
+}
+.nav-link{
+    font-size:1.5em !important ;
+    color: #ffffff;
+}
+.navbar-nav li a:hover{
+  color:#000000
+}
+.collapse{
+  background-color:#6648b1 ;
+  /* border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%; */
+  width: 50%;
+}
+.dropdown-menu.dropdown-item a:hover{
+  color:black;
+}
+.carousel{
+    margin-left: 5em;
+    margin-right: 5em;
+}
+.carousel-inner img{
+    width: 100%;
+    height: auto;
+}
+.carousel-caption {
+    width: 80%;
+    position: absolute;
+    top: 60%;
+    transform: translateY(20%);
+    justify-content: space-evenly;
+    display: flex;
+}
+
+/* .btn-primary{
+    background-color: #6648b1;
+    border: 1px solid #0000;
+    
+} */
+.btn:hover{
+    background-color: #563d7c;
+    border: 1px solid black;
+    color: white;
+} 
+
+ *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+   background-color: #ffffff;
+}
+.social a{
+    font-size: 1.8em;
+    padding: 1em;
+}	
+.fa-facebook{
+    color: #3b5998;
+}
+.fa-twitter{
+    color: #00aced;
+}
+.fa-google-plus-g{
+    color: #dd4b39;
+}
+.fa-instagram{
+    color: #517fa4;
+}
+.fa-youtube{
+    color:#bb0000;
+}
+.fa-facebook:hover,
+.fa-twitter:hover,
+.fa-google-plus-g:hover,
+.fa-instagram:hover,
+.fa-youtube:hover{
+    color:black;
+}
+footer{
+    margin-left: 5em;
+    margin-right: 5em;
+    color: #d5d5d5;
+} 
+
+.functionBtn{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+#profileBtn{
+    color:white;
+}
+
+#profileBtn:hover{
+    border: none;
+    color: black;
+    background-color:#6648b1
+}
+
+.copyrightSection1{
+    width: 100%;
+}

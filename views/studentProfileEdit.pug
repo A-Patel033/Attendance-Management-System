@@ -1,0 +1,144 @@
+doctype html
+html(lang="en")
+  head
+    title Attendance Tracking System
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/a076d05399.js")
+    link(href="/Static/AddCourse.css" rel="stylesheet")
+    //- script(type="text/javascript").
+    //-   function displayTime() { time.innerHTML = new Date(); }
+    //-   setInterval(displayTime, 1000);
+  body
+    // NAvigation Bar
+    nav.navbar.navbar-expand-md.sticky-top
+      #navbar.container-fluid
+        a.navbar-brand(href="#")
+          img(src="/Static/23091b7e-c2a2-4baf-8b23-182d2168fb6a_200x200.png")
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            b
+              li.nav-item
+                a.nav-link(href="/adminAndStaffHomePage") Home
+            b
+              li.nav-item
+                a.nav-link(href="#") About
+            b
+              li.nav-item
+                a.nav-link(href="/Staff/Enroll_Student") Enroll
+            b
+              li.nav-item
+                a.nav-link(href="/Admin/adminProfile")
+                  button#profileBtn.btn.p-0(type="button")=userName
+            b
+              li.nav-item
+                a.nav-link(href="/Logout") Log Out
+    .functionBtn 
+    // Content
+    #content.row
+      #sidebar(class="col-sm-2.5")
+        .wrapper
+          .sidebar
+            ul
+              li
+                a(href="/adminAndStaffHomePage")
+                  i.fas.fa-home
+                  | Home
+              li 
+                a(href="/Staff/Staff_Student")
+                  i.fas.fa-user-graduate
+                  | Students
+              li
+                a(href="/Staff/Staff_Course")
+                  i.fas.fa-book
+                  | Courses
+              li
+                a(href="/Staff/Staff_Atten")
+                  i.fas.fa-address-book
+                  | Attendance
+              li
+                a(href="/Staff/Staff_Report")
+                  i.fas.fa-chart-line
+                  | Report
+              li
+                a(href="#")
+                  i.fas.fa-envelope
+                  | Send Email
+              li
+                a(href="#")
+                  i.fas.fa-address-book
+                  | Contact
+      // Whole Course List Column
+      .col-xl-9.bg-light
+        #listheading.row
+          h4
+            | Update Profile
+        .message 
+          h5.text-danger=msg
+        form#NewCourse(action="/Student/saveUpdatedProfile" method="post")
+          .form-group.row
+            label.col-sm-2.col-form-label(for="name") Full Name :
+            .col-sm-10
+              input.form-control(type="text" name="name" placeholder="Enter New Student Name" value=name)
+          .form-group.row
+            label.col-sm-2.col-form-label(for="email") Email :
+            .col-sm-10
+              input.form-control(type="email" name="email" placeholder="Enter email" value=email)
+          .form-group
+              label(for='address') Address
+              input#inputAddress.form-control(type='text', name="address" placeholder='Address' value=address)
+          .form-row
+              .form-group.col-md-6
+                  label(for='suburb') Suburb
+                  input#inputCity.form-control(type='text' name="suburb" placeholder='Suburb' value=area)
+              .form-group.col-md-4
+                  label(for='state') State
+                  input#inputCity.form-control(type='text' name="state" placeholder="State" value=state)
+              .form-group.col-md-2
+                  label(for='postcode') PostCode
+                  input#inputZip.form-control(type='text' name="postcode" placeholder="Postcode" value= postcode)
+          .form-group
+                label(for='contact') Contact No
+                input#inputAddress.form-control(type='text', name="contact" placeholder='Contact No' value=mNumber)
+          .form-group.row
+            .col-sm-10(style="justify-content: space-around; display: flex; margin: 0px auto;")
+              button.btn.btn-success.btn-md(type="submit") Update Profile
+        // Footer Section
+        .row.pb-2
+          footer(style="clear: both;")
+            .container-fluid.padding
+              #socialmedia.container-fluid
+                .row.text-center
+                  .col-12
+                    h4 Connect to us on
+                  .col-12.social
+                    a(href="https://www.facebook.com/search/top?q=federation%20university%20australia")
+                      i.fab.fa-facebook
+                    a(href="#")
+                      i.fab.fa-twitter
+                    a(href="#")
+                      i.fab.fa-google-plus-g
+                    a(href="#")
+                      i.fab.fa-instagram
+                    a(href="#")
+                      i.fab.fa-youtube
+              #copyright.row.text-center
+                #right.row-md-4
+                  p.p
+                    | © Copyright 2020
+                    br
+                    a(href="first page.html") Attendance Tracking System
+                    | . All Right Reserved
+                .col-12
+                  h5 © www.attendancetracking.com
+                  span#time
+        //
+          <div class="row" style="margin-bottom: 2em; margin-left: 1em;">
+          <button type="button" class="btn btn-secondary btn-sm btn-block">
+          <h4 class="text-left" style="padding-top: 10px; margin-left: 1em;">ITECH3208- Project 1</h4>
+          </button>
+          </div>

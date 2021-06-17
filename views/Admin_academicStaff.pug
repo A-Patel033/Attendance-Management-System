@@ -1,0 +1,168 @@
+doctype html
+html(lang="en")
+  head
+    title Attendance Tracking System
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/a076d05399.js")
+    link(href="/Static/Staff Course.css" rel="stylesheet")
+    script.
+      (function(document) {
+      'use strict';
+      var TableFilter = (function(myArray) {
+      var search_input;
+      function _onInputSearch(e) {
+      search_input = e.target;
+      var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+      myArray.forEach.call(tables, function(table) {
+      myArray.forEach.call(table.tBodies, function(tbody) {
+      myArray.forEach.call(tbody.rows, function(row) {
+      var text_content = row.textContent.toLowerCase();
+      var search_val = search_input.value.toLowerCase();
+      row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+      });
+      });
+      });
+      }
+      return {
+      init: function() {
+      var inputs = document.getElementsByClassName('search-input');
+      myArray.forEach.call(inputs, function(input) {
+      input.oninput = _onInputSearch;
+      });
+      }
+      };
+      })(Array.prototype);
+      document.addEventListener('readystatechange', function() {
+      if (document.readyState === 'complete') {
+      TableFilter.init();
+      }
+      });
+      })(document);
+    //- script(type="text/javascript" src="../table_script.js")
+  body
+    // NAvigation Bar
+    nav.navbar.navbar-expand-md.sticky-top
+      #navbar.container-fluid
+        a.navbar-brand(href="#")
+          img(src="/Static/23091b7e-c2a2-4baf-8b23-182d2168fb6a_200x200.png")
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            b
+              li.nav-item
+                a.nav-link(href="/Staff/Staff_Home") Home
+            b
+              li.nav-item
+                a.nav-link(href="#") About
+            b
+              li.nav-item
+                a.nav-link(href="/Admin/addStaffForm") Add Staff
+            b
+              li.nav-item
+                a.nav-link(href="/Staff/Enroll_Student") Enroll
+            b
+              li.nav-item
+                a.nav-link(href="/Admin/adminProfile")
+                  button#profileBtn.btn.p-0(type="button")=userName
+            b
+              li.nav-item
+                a.nav-link(href="/Logout") Log Out  
+    // Content
+    #content.row
+      #sidebar(class="col-sm-2.5")
+        .wrapper
+          .sidebar
+            ul
+              li
+                a(href="/Admin/assignCoursePage")
+                  i.fas.fa-book-reader.mr-1
+                  | Assign Course
+              li
+                a(href="/Staff/Staff_Student")
+                  i.fas.fa-user-graduate
+                  | Students
+              li
+                a(href="/Staff/Staff_Course")
+                  i.fas.fa-book
+                  | Courses
+              li
+                a(href="/Staff/Staff_Atten")
+                  i.fas.fa-address-book
+                  | Attendance
+              li
+                a(href="/Staff/Staff_Report")
+                  i.fas.fa-chart-line
+                  | Report
+              li
+                a(href="#")
+                  i.fas.fa-envelope
+                  | Send Email
+              li
+                a(href="#")
+                  i.fas.fa-address-book
+                  | Contact
+      // Whole Course List Column
+      .col-xl-9.bg-light
+        #listheading.row
+          h4.mt-1
+            i.fas.fa-book.ml-3.mr-3.mt-1
+            | Staff List
+          h4.searchBar.mt-1.mb-1
+            input.form-control.search-input(type='search' placeholder='Search here....' data-table='staff-list' style="border:1px solid black")
+        .table-responsive.pd-2
+          #wrapper
+            table#data_table.table.table-bordered-dark.table-hover.table-striped(cellspacing="0" cellpadding="0" class="staff-list" border="2")
+              thead
+                tr
+                  th.text-center ID
+                  th.text-center Name
+                  th.text-center Email
+                  th.text-center Contact No
+                  //- th.text-center DOB
+              tbody
+                  each n in list
+                    tr#row1
+                      td=n.Username
+                      td=`${n.Firstname} ${n.Lastname}`
+                      td=n.Email
+                      td=n.Contact                
+                      //- td=n.DOB
+                      td#btn
+                        form(action="/Admin/deleteStaff",method="post")
+                          input(type="hidden",name="id",value=n._id)
+                          button(class="btn" onClick="return confirm('Are You sure want to delete');")
+                            | Delete
+                        
+        // Footer Section
+        .row.pb-2
+          footer(style="clear: both;")
+            .container-fluid.padding
+              #socialmedia.container-fluid
+                .row.text-center
+                  .col-12
+                    h4 Connect to us on
+                  .col-12.social
+                    a(href="https://www.facebook.com/search/top?q=federation%20university%20australia")
+                      i.fab.fa-facebook
+                    a(href="#")
+                      i.fab.fa-twitter
+                    a(href="#")
+                      i.fab.fa-google-plus-g
+                    a(href="#")
+                      i.fab.fa-instagram
+                    a(href="#")
+                      i.fab.fa-youtube
+              #copyright.row.text-center
+                #right.row-md-4
+                  p.p(style="margin-bottom: 1em;")
+                    | © Copyright 2020
+                    br
+                    a(href="first page.html") Attendance Tracking System
+                    | . All Right Reserved
+                .col-12
+                  h5 © www.attendancetracking.com 
+                  span#time

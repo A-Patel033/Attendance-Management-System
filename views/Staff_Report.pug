@@ -1,0 +1,135 @@
+doctype html
+html(lang="en")
+  head
+    title Attendance Tracking System
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/a076d05399.js")
+    link(href="/Static/Staff Course.css" rel="stylesheet")
+    //- script(type="text/javascript" src="../table_script.js")
+  body
+    // NAvigation Bar
+    nav.navbar.navbar-expand-md.sticky-top
+      #navbar.container-fluid
+        a.navbar-brand(href="#")
+          img(src="/Static/23091b7e-c2a2-4baf-8b23-182d2168fb6a_200x200.png")
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            b
+              li.nav-item
+                a.nav-link(href="/adminAndStaffHomePage") Home
+            b
+              li.nav-item
+                a.nav-link(href="#") About
+            b
+              li.nav-item
+                a.nav-link(href="/Staff/Enroll_Student") Enroll
+            b
+              li.nav-item
+                a.nav-link(href="/Admin/adminProfile")
+                  button#profileBtn.btn.p-0(type="button")=userName
+            b
+              li.nav-item
+                a.nav-link(href="/Logout") Log Out  
+    // Content
+    #content.row
+      #sidebar(class="col-sm-2.5")
+          .sidebarReport
+                form.reportSidebarform(action="/adminAndStaffHomePage", method="get") 
+                  button.reportSidebarBtn
+                    i.fas.fa-home.mr-2
+                    | Home
+                form.reportSidebarform(action="/Staff/Staff_Student", method="get") 
+                  button.reportSidebarBtn
+                    i.fas.fa-user-graduate.mr-2
+                    | Students
+                form.reportSidebarform(action="/Staff/Staff_Course", method="get") 
+                  button.reportSidebarBtn
+                    i.fas.fa-book.mr-2
+                    | Courses
+                form.reportSidebarform(action="/Staff/fullReport", method="POST") 
+                  button.reportSidebarBtn
+                    i.fas.fa-chart-line.mr-2
+                    | Brief Report
+                //- form.reportSidebarform(action="", method="POST") 
+                //-   button.reportSidebarBtn
+                //-     i.fas.fa-chart-line.mr-2
+                //-     | One Course Report
+                form.reportSidebarform(action="/Staff/Staff_Atten", method="get") 
+                  button.reportSidebarBtn
+                    i.fas.fa-address-book.mr-2
+                    | Attendance
+                form.reportSidebarform(action="/Staff/sendMailPage", method="get") 
+                  button.reportSidebarBtn
+                    i.fas.fa-envelope.mr-2
+                    | Send Mail
+                form.reportSidebarform(action="", method="get") 
+                  button.reportSidebarBtn
+                    i.fas.fa-address-book.mr-2
+                    | Contact
+      // Whole Course List Column
+      .col-xl-9.bg-light
+        .mainArea(style="display:")
+          #courseSelect.courseSelect
+            form#courseSelectionforAttendance(action="/Staff/see_Attendance" method="POST" )
+                    .form-group
+                      select#cars(name='courseCode')
+                        each n in list
+                          option(value=n.CourseCode)=n.CourseName             
+                    .form-group
+                      select#Intake(name='Intake')
+                        option.attribute(value='none' disabled selected) Intake
+                        option.attribute(value='Intake1') 2021 Intake 1
+                        option.attribute(value='Intake2') 2021 Intake 2
+                    .form-group
+                      label.dateforcourse(name='AttendanceDate') Date :
+                      input#todayDate(type='date' name='AttendanceDate')
+                    .form-group
+                      button#loadStudent.loadStudent
+                        |See Attendance
+          #oneCourseSelect.oneCourseSelect(style="margin-top: 60px")
+            form#courseSelectionforAttendance(action="/Staff/oneCourseReport" method="POST" )
+                    .form-group
+                      select#cars(name='courseCode')
+                        each n in list
+                          option(value=n.CourseCode)=n.CourseName             
+                    .form-group
+                      select#Intake(name='Intake')
+                        option.attribute(value='none' disabled selected) Intake
+                        option.attribute(value='Intake1') 2021 Intake 1
+                        option.attribute(value='Intake2') 2021 Intake 2
+                    .form-group
+                      button#loadStudent.loadStudent(style="padding: 5px; border-radius: 5px;")
+                        |One Course Report      
+        .row.pb-2
+          footer(style="clear: both;")
+            .container-fluid.padding
+              #socialmedia.container-fluid
+                .row.text-center
+                  .col-12
+                    h4 Connect to us on
+                  .col-12.social
+                    a(href="https://www.facebook.com/search/top?q=federation%20university%20australia")
+                      i.fab.fa-facebook
+                    a(href="#")
+                      i.fab.fa-twitter
+                    a(href="#")
+                      i.fab.fa-google-plus-g
+                    a(href="#")
+                      i.fab.fa-instagram
+                    a(href="#")
+                      i.fab.fa-youtube
+              #copyright.row.text-center
+                #right.row-md-4
+                  p.p(style="margin-bottom: 1em;")
+                    | © Copyright 2020
+                    br
+                    a(href="first page.html") Attendance Tracking System
+                    | . All Right Reserved
+                .col-12
+                  h5 © www.attendancetracking.com 
+                  span#time

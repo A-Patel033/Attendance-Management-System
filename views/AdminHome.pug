@@ -1,0 +1,114 @@
+doctype html
+html(lang="en")
+  head
+    title Attendance Tracking System
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/a076d05399.js")
+    link(href="/Static/Staff_Stu_Home.css" rel="stylesheet")
+    style.
+      .container-fluid {
+      height: 8em;
+      }
+      #time {
+      color: white;
+      font-size: 18px;
+      }
+    script.
+      function displayTime() { time.innerHTML = new Date(); }
+      setInterval(displayTime, 1000);
+  body
+    nav.navbar.navbar-expand-md.sticky-top
+      .container-fluid(style="padding-left: 4em; background-color: #d5d5d5;")
+        a.navbar-brand(href="#" style="padding-left: 2em;")
+          img(src="/Static/23091b7e-c2a2-4baf-8b23-182d2168fb6a_200x200.png")
+        #navbarResponsive.collapse.navbar-collapse(style="border:1px solid black; justify-content: flex-end;")
+          ul.navbar-nav.mb-0(style="width: 57%; display: flex; justify-content: space-between;")
+            b
+              li.nav-item
+                a.nav-link(href="/adminAndStaffHomePage") Home
+            b
+              li.nav-item
+                a.nav-link(href="#") About
+            b
+              li.nav-item
+                a.nav-link(href="#") Contact
+            b
+              li.nav-item
+                a.nav-link(href="/Staff/Enroll_Student") Enroll
+            b
+              li.nav-item
+                a.nav-link(href="/Admin/adminProfile")
+                  button#profileBtn.btn.p-0(type="button")=userName
+            b
+              li.nav-item
+                a.nav-link(href="/Logout") Log Out 
+    .functionBtn
+      a(href="/Admin/academicStaff")
+        button.btn.btn-sm.m-3(type="button")
+          i.fas.fa-user-tie.pr-2
+          | Staff
+      a(href="/Staff/Staff_Student")
+        button.btn.btn-sm.m-3(type="button")
+          i.fas.fa-user-graduate.pr-2
+          | Students
+      a(href="/Staff/Staff_Course")
+        button.btn.btn-sm.m-3(type="button")
+          i.fas.fa-book.pr-2
+          | Courses
+      a(href="/Staff/Staff_Atten")
+        button.btn.btn-sm.m-3(type="button")
+          i.fas.fa-address-book.pr-2
+          | Attendance
+      a(href="/Staff/Staff_Report")
+        button.btn.btn-sm.m-3(type="button")
+          i.fas.fa-chart-line.pr-2
+          | Report
+      a(href="/Staff/sendMailPage")
+        button.btn.btn-sm.m-3(type="button")
+          i.fas.fa-envelope.pr-2
+          | Send Email
+    #slides.carousel.slide(data-ride="carousel")
+      ul.carousel-indicators
+        li.active(data-target="#slides" data-slide-to="0")
+        li(data-target="#slides" data-slide-to="1")
+      .carousel-inner
+        .carousel-item.active
+          img(src="/Static/Federation-University-of-Australia_AUS_background.jpg")
+        .carousel-item
+          img(src="/Static/S-Bulding.jpg")
+    footer(style="clear: both;")
+      .container-fluid.padding(style="margin-top: 1em;")
+        .container-fluid(style="background-color:lightgray;")
+          .row.text-center
+            .col-12
+              h4(style="color:black; margin-top: 1em;") Connect to us on
+            .col-12.social
+              a(href="https://www.facebook.com/search/top?q=federation%20university%20australia")
+                i.fab.fa-facebook
+              a(href="#")
+                i.fab.fa-twitter
+              a(href="#")
+                i.fab.fa-google-plus-g
+              a(href="#")
+                i.fab.fa-instagram
+              a(href="#")
+                i.fab.fa-youtube
+        .row.text-center(style="border: 1px solid blue; margin-top: 0.5em; background-color: #3f3f3f;")
+          .col-md-4(style="margin-top: 0.5em; clear: both;;")
+          .col-md-4
+            p.p(style="margin-bottom: 1em;")
+              | © Copyright 2020
+              br
+              a(href="first page.html") Attendance Tracking System
+              | . All Right Reserved
+              br
+              | Created by Attendance Tracker Group
+          .col-md-4
+          .col-12
+            h5 © www.attendancetracking.com
+            //- span#time

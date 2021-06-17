@@ -1,0 +1,214 @@
+doctype html
+html(lang="en")
+  head
+    title Attendance Tracking System
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    script(src="https://kit.fontawesome.com/a076d05399.js")
+    link(href="/Static/Staff Course.css" rel="stylesheet")
+    script.
+      (function(document) {
+      'use strict';
+      var TableFilter = (function(myArray) {
+      var search_input;
+      function _onInputSearch(e) {
+      search_input = e.target;
+      var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+      myArray.forEach.call(tables, function(table) {
+      myArray.forEach.call(table.tBodies, function(tbody) {
+      myArray.forEach.call(tbody.rows, function(row) {
+      var text_content = row.textContent.toLowerCase();
+      var search_val = search_input.value.toLowerCase();
+      row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+      });
+      });
+      });
+      }
+      return {
+      init: function() {
+      var inputs = document.getElementsByClassName('search-input');
+      myArray.forEach.call(inputs, function(input) {
+      input.oninput = _onInputSearch;
+      });
+      }
+      };
+      })(Array.prototype);
+      document.addEventListener('readystatechange', function() {
+      if (document.readyState === 'complete') {
+      TableFilter.init();
+      }
+      });
+      })(document);
+    //- script.
+    //-   function sortTable() {
+    //-   var table, rows, switching, i, x, y, shouldSwitch;
+    //-   table = document.getElementById("data_table");
+    //-   switching = true;
+    //-   while (switching) {
+    //-   switching = false;
+    //-   rows = table.rows;
+    //-   for (i = 1; i < (rows.length - 1); i++) {
+    //-   shouldSwitch = false;
+    //-   x = rows[i].getElementsByTagName("TD")[2];
+    //-   y = rows[i + 1].getElementsByTagName("TD")[2];
+    //-   if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+    //-   shouldSwitch = true;
+    //-   break;
+    //-   }
+    //-   }
+    //-   if (shouldSwitch) {
+    //-   rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    //-   switching = true;
+    //-   }
+    //-   }
+    //-   }
+  body
+    // NAvigation Bar
+    nav.navbar.navbar-expand-md.sticky-top
+      #navbar.container-fluid
+        a.navbar-brand(href="#")
+          img(src="/Static/23091b7e-c2a2-4baf-8b23-182d2168fb6a_200x200.png")
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            b
+              li.nav-item
+                a.nav-link(href="/Student/studentHome") Home
+            b
+              li.nav-item
+                a.nav-link(href="#") About
+            b
+              li.nav-item
+                a.nav-link(href="/Student/profile")
+                  button#profileBtn.btn.p-0(type="button")=userName
+            b
+              li.nav-item
+                a.nav-link(href="/Logout") Log Out
+    // Content
+    #content.row
+      #sidebar(class="col-sm-2.5")
+        .wrapper
+          .sidebar
+            ul
+              li
+                a(href="/Staff/Staff_Home")
+                  i.fas.fa-home
+                  | Home
+              li
+                a(href="/Staff/Staff_Student")
+                  i.fas.fa-user-graduate
+                  | Students
+              li
+                a(href="/Staff/Staff_Course")
+                  i.fas.fa-book
+                  | Courses
+              li
+                a(href="/Staff/Staff_Atten")
+                  i.fas.fa-address-book
+                  | Attendance
+              li
+                a(href="/Staff/Staff_Report")
+                  i.fas.fa-chart-line
+                  | Report
+              li
+                a(href="/Staff/sendMailPage")
+                  i.fas.fa-envelope
+                  | Send Email
+              li
+                a(href="#")
+                  i.fas.fa-address-book
+                  | Contact
+      // Whole Course List Column
+      .col-xl-9.bg-light
+        #listheading.row
+            .headingName.mt-2
+                h5.mt-1.ml-2
+                    i.fas.fa-user-graduate.mr-3
+                    h5.mr-3(name="getselected_CourseCode")=userName
+                    h5(name="getselected_Course")=studentName
+            h4.searchBar.mt-1.mb-1.mr-3
+                input.form-control.search-input(type='search' placeholder='Search here....' data-table='oneCourseReport-list' style="border:1px solid black")
+        //- .sortTable.mb-2(style="width:100%; height: auto")
+        //-     button.btn-sm(onclick='sortTable()')
+        //-         | Sort
+        .oneCourseReportGraph
+            form#oneCourseReport_info.mr-2(action="/Student/graph" method="POST" )
+              .form-group#oneCourseReport_dropdown
+                  select#cars(name="course_code")
+                    option(style="padding: 10px")=courseCode 
+                  select#cars(name="course_name")
+                    option(style="padding: 10px")=courseName
+                  select#cars(name="intake")
+                    option(style="padding: 10px")=Intake
+              .form-group
+                button#graphBtn.graphBtn
+                  | Graph
+        .table-responsive_report.pd-2
+            #attendanceBriefReport.m-1(style="width:100%")
+                table#data_table.table.table-bordered-dark.table-hover.table-striped(cellspacing="0" cellpadding="0" class="oneCourseReport-list " border="2")
+                  thead
+                    tr 
+                        th.text-center(colspan='4' style="background-color: green;") Present Attendance
+                    tr
+                        th.text-center Code
+                        th.text-center Name
+                        th.text-center Date
+                        th.text-center Intake
+
+                  tbody
+                      each n in list1
+                        tr#row1
+                          td=`${n.course_code}`
+                          td=`${n.course_name}`
+                          td=`${n.date}`
+                          td=`${n.Intake}`
+            #attendanceBriefReport.m-1(style="width:100%")
+                table#data_table.table.table-bordered-dark.table-hover.table-striped(cellspacing="0" cellpadding="0" class="oneCourseReport-list " border="2")
+                  thead
+                    tr 
+                        th.text-center(colspan='4' style="background-color: red") Absent Attendance
+                    tr
+                      th.text-center Code
+                      th.text-center Name
+                      th.text-center Date
+                      th.text-center Intake
+                     
+                  tbody
+                      each n in list2
+                        tr#row1
+                          td=`${n.course_code}`
+                          td=`${n.course_name}`
+                          td=`${n.date}`
+                          td=`${n.Intake}`
+        // Footer Section
+        .row.pb-2
+          footer(style="clear: both;")
+            .container-fluid.padding
+              #socialmedia.container-fluid
+                .row.text-center
+                  .col-12
+                    h4 Connect to us on
+                  .col-12.social
+                    a(href="https://www.facebook.com/search/top?q=federation%20university%20australia")
+                      i.fab.fa-facebook
+                    a(href="#")
+                      i.fab.fa-twitter
+                    a(href="#")
+                      i.fab.fa-google-plus-g
+                    a(href="#")
+                      i.fab.fa-instagram
+                    a(href="#")
+                      i.fab.fa-youtube
+              #copyright.row.text-center
+                .copyrightSection1
+                  p.p(style="margin-bottom: 1em;")
+                    | © Copyright 2020
+                    br
+                    a(href="first page.html") Attendance Tracking System
+                    | . All Right Reserved Created by Attendance Tracker Group
+                .col-12
+                  h5 © www.attendancetracking.com 
+                  span#time
