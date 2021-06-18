@@ -65,8 +65,8 @@ const sendMail = function sendMail(req,res,next){
         port: 465,
         secure: true, // use TLS
         auth: {
-          user: "attendancetracker6924@gmail.com",
-          pass: "A8995$3266"
+          user: "atten***************@gmail.com",
+          pass: "*********"
         },
         tls:{
             rejectUnauthorized:false
